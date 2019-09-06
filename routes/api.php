@@ -16,3 +16,5 @@ use Illuminate\Http\Request;
 Route::middleware(['auth:api', 'verified'])->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
