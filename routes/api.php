@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,4 +18,10 @@ Route::middleware(['auth:api', 'verified'])->get('/user', function (Request $req
     return $request->user();
 });
 
-
+Route::namespace('Api')->group(function () {
+    Route::name('api.')->group(function (){
+        Route::apiResources([
+            'user' => 'UserController',
+        ]);
+    });
+});

@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Paraiso Saúde
+                    <img src="{{ asset('img/logo.png') }}" alt="">
                 </div>
 
             </div>
