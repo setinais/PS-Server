@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Requests\UserPost;
+use App\Http\Requests\UserPut;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
@@ -34,26 +35,34 @@ class UserController extends Controller
      */
     public function store(UserPost $request)
     {
+        try{
+            $user =new User();
 
-        $user =new User();
+            $user->name = $request['name'];
+            $user->email = $request['email'];
+            $user->password = Hash::make($request['password']);
+            $user->sexo = $request['sexo'];
+            $user->cartao_sus = $request['cartao_sus'];
+            $user->data_nascimento = $request['data_nascimento'];
+            $user->cpf = $request['cpf'];
 
-        $user->name = $request['name'];
-        $user->email = $request['email'];
-        $user->password = Hash::make($request['password']);
-        $user->sexo = $request['sexo'];
-        $user->cartao_sus = $request['cartao_sus'];
-        $user->data_nascimento = $request['data_nascimento'];
-        $user->cpf = $request['cpf'];
+            $user->save();
 
-        $user->save();
-
-        return response()->json(
-            [
-                'message' => 'Cadastro realizado com sucesso!',
-                'errors' => false,
-                'data' => $user
-            ]
-        );
+            return response()->json(
+                [
+                    'message' => 'Cadastro realizado com sucesso!',
+                    'errors' => false,
+                    'data' => $user
+                ]
+            );
+        } catch (\Exception $e){
+            return response()->json(
+                [
+                    'message' => 'Erro (Us1) Interno servidor, Contate um Administrador do Sistema!',
+                    'errors' => false,
+                ], 500
+            );
+        }
     }
 
     /**
@@ -64,7 +73,25 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        try{
+            $user = User::findOrFail($id);
+
+            return response()->json(
+                [
+                    'message' => 'Usuario ok!',
+                    'errors' => false,
+                    'data' => $user
+                ]
+            );
+        } catch (\Exception $e){
+            return response()->json(
+                [
+                    'message' => 'Erro (Us0) Interno servidor, Contate um Administrador do Sistema!',
+                    'errors' => false,
+                ], 500
+            );
+        }
+
     }
 
     /**
@@ -74,9 +101,18 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserPut $request, $id)
     {
-        //
+        try{
+
+        } catch (\Exception $e){
+            return response()->json(
+                [
+                    'message' => 'Erro (Us2) Interno servidor, Contate um Administrador do Sistema!',
+                    'errors' => false
+                ], 500
+            );
+        }
     }
 
     /**
