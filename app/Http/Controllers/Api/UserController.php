@@ -104,6 +104,32 @@ class UserController extends Controller
     public function update(UserPut $request, $id)
     {
         try{
+            $user = User::findOrFail($id);
+
+            if(isset($request['email']))
+                $user->email = $request['email'];
+            if(isset($request['password']))
+                $user->password = Hash::make($request['password']);
+            if(isset($request['name']))
+                $user->name = $request['name'];
+            if(isset($request['data_nascimento']))
+                $user->data_nascimento = $request['data_nascimento'];
+            if(isset($request['sexo']))
+                $user->sexo = $request['sexo'];
+            if(isset($request['cpf']))
+                $user->cpf = $request['cpf'];
+            if(isset($request['cartao_sus']))
+                $user->cartao_sus = $request['cartao_sus'];
+
+            $user->save();
+
+            return response()->json(
+                [
+                    'message' => 'Ok!',
+                    'errors' => false,
+                    'data' => $user
+                ]
+            );
 
         } catch (\Exception $e){
             return response()->json(
