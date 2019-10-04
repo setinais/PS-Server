@@ -14,7 +14,7 @@ class UserController extends Controller
 
     function __construct()
     {
-//        $this->middleware([])->except('store');
+        $this->middleware('auth:api')->except('store');
     }
 
     /**
@@ -71,10 +71,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, Request $request)
     {
         try{
-            $user = User::findOrFail($id);
+            $user = User::findOrFail($request->user()->token()['user_id']);
 
             return response()->json(
                 [
