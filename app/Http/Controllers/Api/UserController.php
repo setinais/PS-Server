@@ -104,7 +104,7 @@ class UserController extends Controller
     public function update(UserPut $request, $id)
     {
         try{
-            $user = User::findOrFail($id);
+            $user = User::findOrFail($request->user()->token()['user_id']);
 
             if(isset($request['email']))
                 $user->email = $request['email'];

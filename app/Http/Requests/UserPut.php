@@ -26,7 +26,7 @@ class UserPut extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|max:255',
+            'name' => 'sometimes|string|max:255',
             'email' => 'sometimes|email|unique:users|max:255',
             'password' => 'sometimes|string|min:8',
             'sexo' => ['sometimes',Rule::in(['Masculino','Feminino'])],
