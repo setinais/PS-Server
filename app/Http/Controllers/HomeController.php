@@ -14,6 +14,7 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware(['auth', 'verified']);
+        $this->middleware('role')->except('emailVerifyAPP');
     }
 
     /**
@@ -24,5 +25,9 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+    }
+
+    public function emailVerifyAPP(Request $request){
+        return view('auth.verifyedapp');
     }
 }

@@ -63,7 +63,7 @@ class UserPost extends FormRequest
             'data_nascimento.date'      => 'A data de nacimento é Obrigatoria!',
 
             'cartao_sus.required'=> 'O numero do cartâo SUS é obrigatorio!',
-            'cartao_sus.integer' => 'O numero do cartâo SUS deve conter somente numeros!',
+            'cartao_sus.integer' => 'O cartâo SUS deve conter somente numeros!',
             'cartao_sus.unique' => 'Já existe um cartao sus com este numero!',
 
         ];

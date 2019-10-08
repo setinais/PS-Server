@@ -45,8 +45,9 @@ class UserController extends Controller
             $user->cartao_sus = $request['cartao_sus'];
             $user->data_nascimento = $request['data_nascimento'];
             $user->cpf = $request['cpf'];
-
+            $user->role = 'APP';
             $user->save();
+            $user->sendEmailVerificationNotification();
 
             return response()->json(
                 [
@@ -147,8 +148,25 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
-        //
+        try{
+            $user = User::findOrFail($request->user()->token()['user_id']);
+            $user->delete();
+            return response()->json(
+                [
+                    'message' => 'Usuario ok!',
+                    'errors' => false,
+                    'data' => $user
+                ]
+            );
+        }catch (\Exception $e){
+            return response()->json(
+                [
+                    'message' => 'Erro (Us3) Interno servidor, Contate um Administrador do Sistema!',
+                    'errors' => false,
+                ], 500
+            );
+        }
     }
 }
