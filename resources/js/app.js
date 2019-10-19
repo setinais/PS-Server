@@ -45,3 +45,7 @@ Vue.component(
 const app = new Vue({
     el: '#app',
 });
+
+new Vue({
+    el: '#filemanager'
+});

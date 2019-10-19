@@ -18,25 +18,25 @@ class VerifiedEmail
      */
     public function handle($request, Closure $next)
     {
-        $credentials['email'] = $request['username'];
-        $credentials['password'] = $request['password'];
-        $user = Auth::attempt($credentials);
-        if($user){
-            if(!Auth::user()->hasVerifiedEmail()) {
-                return response()->json(
-                    [
-                        'message' => 'E-mail não verificado, por favor olhe sua caixa de entrada ou spam!!',
-                        'errors' => true,
-                        'data' => Auth::user()->hasVerifiedEmail()
-                    ], 422
-                );
-            }else{
-                Auth::logout();
-                return $next($request);
-            }
-        }else{
+//        $credentials['email'] = $request['username'];
+//        $credentials['password'] = $request['password'];
+//        $user = Auth::attempt($credentials);
+//        if($user){
+//            if(!Auth::user()->hasVerifiedEmail()) {
+//                return response()->json(
+//                    [
+//                        'message' => 'E-mail não verificado, por favor olhe sua caixa de entrada ou spam!!',
+//                        'errors' => true,
+//                        'data' => Auth::user()->hasVerifiedEmail()
+//                    ], 422
+//                );
+//            }else{
+//                Auth::logout();
+//                return $next($request);
+//            }
+//        }else{
             return $next($request);
-        }
+//        }
 
 
 

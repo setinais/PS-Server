@@ -121,7 +121,7 @@ class UserController extends Controller
                 $user->cpf = $request['cpf'];
             if(isset($request['cartao_sus']))
                 $user->cartao_sus = $request['cartao_sus'];
-
+            $user->role_id = 3;
             $user->save();
 
             return response()->json(
