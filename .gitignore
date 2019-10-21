@@ -14,3 +14,4 @@ composer.lock
 package.lock
 /.idea
 package-lock.json
+.idea/workspace.xml
