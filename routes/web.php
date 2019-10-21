@@ -52,6 +52,7 @@ Route::group(['prefix' => 'ps-admin'], function () {
     Route::post('/media-user/crop', 'User\BannerAppController@crop')->name('media.user.crop');
     Route::post('/media-user/upload', 'User\BannerAppController@upload')->name('media.user.upload');
 
+
     Voyager::routes();
 });
 

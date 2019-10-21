@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Banner;
 use App\Http\Controllers\Admin\VoyagerMediaController;
 use Exception;
 use Illuminate\Http\Request;
@@ -24,6 +25,7 @@ class BannerAppController extends VoyagerMediaController
     public function __construct()
     {
         $this->middleware('admin.user');
+
         $this->filesystem = config('voyager.storage.disk');
     }
 
@@ -234,6 +236,13 @@ class BannerAppController extends VoyagerMediaController
                 }
             }
 
+            $updates = Banner::find(1);
+            if($updates == null)
+                $updates = new Banner();
+            $updates->update = true;
+            $updates->image = json_encode([]);
+            $updates->save();
+
             $success = true;
             $message = __('voyager::media.success_uploaded_file');
             $path = preg_replace('/^public\//', '', $file);
@@ -284,4 +293,5 @@ class BannerAppController extends VoyagerMediaController
 
         return response()->json(compact('success', 'message'));
     }
+
 }

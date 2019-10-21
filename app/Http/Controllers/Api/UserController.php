@@ -41,13 +41,13 @@ class UserController extends Controller
             $user->name = $request['name'];
             $user->email = $request['email'];
             $user->password = Hash::make($request['password']);
-            $user->sexo = $request['sexo'];
+//            $user->sexo = $request['sexo'];
             $user->cartao_sus = $request['cartao_sus'];
-            $user->data_nascimento = $request['data_nascimento'];
+//            $user->data_nascimento = $request['data_nascimento'];
             $user->cpf = $request['cpf'];
-            $user->role = 'APP';
+            $user->role_id = 3;
             $user->save();
-            $user->sendEmailVerificationNotification();
+//            $user->sendEmailVerificationNotification();
 
             return response()->json(
                 [
@@ -113,10 +113,10 @@ class UserController extends Controller
                 $user->password = Hash::make($request['password']);
             if(isset($request['name']))
                 $user->name = $request['name'];
-            if(isset($request['data_nascimento']))
-                $user->data_nascimento = $request['data_nascimento'];
-            if(isset($request['sexo']))
-                $user->sexo = $request['sexo'];
+//            if(isset($request['data_nascimento']))
+//                $user->data_nascimento = $request['data_nascimento'];
+//            if(isset($request['sexo']))
+//                $user->sexo = $request['sexo'];
             if(isset($request['cpf']))
                 $user->cpf = $request['cpf'];
             if(isset($request['cartao_sus']))
