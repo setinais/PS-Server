@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes(['verify' => true]);
+Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/emailverifyedapp', 'HomeController@emailVerifyAPP')->name('emailVerifyAPP');
@@ -43,6 +43,17 @@ Route::middleware(['auth', 'web'])->group(function () {
     Route::delete('/oauth/personal-access-tokens','\Laravel\Passport\Http\Controllers\PersonalAccessTokenController@destroy');
 
     //Scope
+});
+
+Route::group(['prefix' => 'ps-admin'], function () {
+    Route::get('/media-user', 'User\BannerAppController@index')->name('media.user.index');
+    Route::post('/media-user/files', 'User\BannerAppController@files')->name('media.user.files');
+    Route::post('/media-user/delete', 'User\BannerAppController@delete')->name('media.user.delete');
+    Route::post('/media-user/crop', 'User\BannerAppController@crop')->name('media.user.crop');
+    Route::post('/media-user/upload', 'User\BannerAppController@upload')->name('media.user.upload');
+
+
+    Voyager::routes();
 });
 
 

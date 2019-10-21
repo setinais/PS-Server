@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUnidadesTable extends Migration
+class CreateLocalRiscosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,14 @@ class CreateUnidadesTable extends Migration
      */
     public function up()
     {
-        Schema::create('unidades', function (Blueprint $table) {
+        Schema::create('local_riscos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nome');
-            $table->enum('role', ['F','L','E','S']);
             $table->integer('location_id');
+            $table->string('descricao');
+            $table->string('endereco')->nullable();
+            $table->string('imagem');
+            $table->string('bairro')->nullable();
+            $table->enum('status', ['A', 'R', 'T', 'B'])->default('T'); //A - Aprovado, R - Reprovado, T - EM teste, B - Resolvido dado baixa
             $table->timestamps();
             $table->softDeletes();
         });
@@ -30,6 +33,6 @@ class CreateUnidadesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('unidades');
+        Schema::dropIfExists('local_riscos');
     }
 }
