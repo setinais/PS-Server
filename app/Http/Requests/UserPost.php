@@ -40,32 +40,32 @@ class UserPost extends FormRequest
     {
         return [
 
-            'cpf.required'=> 'O :attribute é obrigatorio!',
-            'cpf.numeric' => 'O :attribute deve conter somente numeros!',
-            'cpf.size'    => 'O :attribute tem que ter :size numeros!',
-            'cpf.unique'   => 'Já existe um :attribute cadastrado como este!',
+            'cpf.required'=> 'Digite o :attribute',
+            'cpf.numeric' => 'O :attribute deve conter somente números',
+            'cpf.size'    => 'Insira um número com 11 dígitos',
+            'cpf.unique'   => 'Já existe este :attribute cadastrado',
 
-            'name.required' => 'O nome é um campo Obrigatorio!',
-            'name.string'   => 'O nome deve conter somente caracteries!',
-            'name.max'      => 'O nome deve conter no maximo :max caracteries!',
+            'name.required' => 'Digite o nome',
+            'name.string'   => 'Digite somente letras',
+            'name.max'      => 'Digite até :max letras no nome',
 
-            'email.required' => 'O :attribute é um campo Obrigatorio!',
-            'email.email'    => 'Este :attribute não é valido!',
-            'email.max'      => 'O :attribute deve conter no maximo :max caracteries!',
-            'email.unique'   => 'Já existe um :attribute cadastrado como este!',
+            'email.required' => 'Digite o :attribute',
+            'email.email'    => 'Este :attribute não é válido',
+            'email.max'      => 'Digite até :max caracteres no email',
+            'email.unique'   => 'Já existe este :attribute cadastrado',
 
-            'password.required'  => 'A senha é obrigatoria',
-            'password.string'    => 'A nome deve ser uma String!',
-            'password.min'       => 'A nome deve ter no minimo :min caracteries!',
+            'password.required'  => 'Digite a senha',
+            'password.string'    => 'Insira letras, números e caracteres especiais',
+            'password.min'       => ':min ou mais caracteres',
 
-//            'sexo.in' => 'Valor do :attribute invalido!',
+//            'sexo.in' => 'O sexo não é válido',
 
-//            'data_nascimento.required'  => 'A data de nacimento esta invalida!',
-//            'data_nascimento.date'      => 'A data de nacimento é Obrigatoria!',
+//            'data_nascimento.required'  => 'A data de nascimento não é válida',
+//            'data_nascimento.date'      => 'A data de nascimento não é válida',
 
-            'cartao_sus.required'=> 'O numero do cartâo SUS é obrigatorio!',
-            'cartao_sus.integer' => 'O cartâo SUS deve conter somente numeros!',
-            'cartao_sus.unique' => 'Já existe um cartao sus com este numero!',
+            'cartao_sus.required'=> 'Digite os números do Cartão SUS',
+            'cartao_sus.integer' => 'Insira somente números',
+            'cartao_sus.unique' => 'Já existe este Cartão SUS cadastrado',
 
         ];
     }
