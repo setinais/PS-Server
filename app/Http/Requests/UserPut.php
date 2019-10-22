@@ -41,26 +41,26 @@ class UserPut extends FormRequest
         return [
 
 
-            'cpf.numeric' => 'O :attribute deve conter somente numeros!',
-            'cpf.size'    => 'O :attribute tem que ter :size numeros!',
+            'cpf.numeric' => 'O :attribute deve conter somente números',
+            'cpf.size'    => 'Insira um número com 11 dígitos',
 
-            'name.required' => 'Nome é obrigatorio!',
-            'name.string'   => 'O nome deve conter somente caracteries!',
-            'name.max'      => 'O nome deve conter no maximo :max caracteries!',
+            'name.required' => 'Digite o nome',
+            'name.string'   => 'Digite somente letras',
+            'name.max'      => 'Digite até :max letras no nome',
 
-            'email.email'    => 'Este :attribute não é valido!',
-            'email.max'      => 'O :attribute deve conter no maximo :max caracteries!',
-            'email.unique'   => 'Já existe um :attribute cadastrado!',
+            'email.email'    => 'Este :attribute não é válido',
+            'email.max'      => 'Digite até :max caracteres no email',
+            'email.unique'   => 'Já existe este :attribute cadastrado',
 
-            'password.string'    => 'A nome deve ser uma String!',
-            'password.min'       => 'A nome deve ter no minimo :min caracteries!',
+            'password.string'    => 'Insira letras, números e caracteres especiais',
+            'password.min'       => ':min ou mais caracteres',
 
-            'sexo.in' => 'Valor do :attribute invalido!',
+            'sexo.in' => 'O sexo não é válido',
 
-            'data_nascimento.date'      => 'A data de nacimento esta Invalida!',
+            'data_nascimento.date'      => 'A data de nascimento não é válida',
 
-            'cartao_sus.integer' => 'O numero do cartâo SUS deve conter somente numeros!',
-            'cartao_sus.unique' => 'Já existe um cartao sus com este numero!',
+            'cartao_sus.integer' => 'Insira somente números',
+            'cartao_sus.unique' => 'Já existe este Cartão SUS cadastrado',
 
         ];
     }

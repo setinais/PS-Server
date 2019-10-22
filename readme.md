@@ -1,4 +1,4 @@
-## Base de Dados
+composer## Base de Dados
     * php artisan migrate
 
 ## Instalação do Voyager
