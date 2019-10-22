@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\LocalRisco;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
 class LocalRiscoController extends Controller
@@ -36,20 +37,25 @@ class LocalRiscoController extends Controller
     public function store(Request $request)
     {
         try{
+            $imagem = $this->uploadImage($request->primaryImage);
+            if($imagem['errors'])
+                return response()->json([
+                    'message' => 'Falha no envio da imagem!',
+                    'errors' => false,
+                ]);
+
             $lr = new LocalRisco();
             $lr->descricao = $request['descricao'];
             $lr->endereco = $request['endereco'];
             $lr->bairro = $request['bairro'];
-            $lr->imagem = 'fewfewe';
-            $lr->imagem = $this->uploadImage($request->primaryImage);
+            $lr->imagem = $imagem['data'];
             $lr->location_id = $lr->location()->create($request['location'])->id;
-//            $lr->save();
+            $lr->save();
 
             return response()->json(
                 [
                     'message' => 'Cadastro realizado com sucesso!',
-                    'errors' => false,
-                    'data' => $lr
+                    'errors' => false
                 ]
             );
         } catch (\Exception $e){
@@ -101,23 +107,31 @@ class LocalRiscoController extends Controller
         if (!is_null($image))
         {
             $file = $image;
+
             $extension = $image->getClientOriginalExtension();
             $fileName = time() . random_int(100, 999) .'.' . $extension;
-            $destinationPath = public_path('images/'.$fileName);
+            $destinationPath = Storage::disk($this->filesystem)->path('local-risco');
             $url = 'http://'.$_SERVER['HTTP_HOST'].'/images/'.$fileName;
             $fullPath = $destinationPath.$fileName;
             if (!file_exists($destinationPath)) {
                 File::makeDirectory($destinationPath, 0775);
             }
             $image = Image::make($file)
-                ->resize($size, null, function ($constraint) {
+                ->resize(300, null, function ($constraint) {
                     $constraint->aspectRatio();
                 })
                 ->encode('jpg');
             $image->save($fullPath, 100);
-            return $url;
+            return [
+                'message' => 'Imagem invalida!',
+                'errors' => false,
+                'data' => $fileName
+            ];
         } else {
-            return 'http://'.$_SERVER['HTTP_HOST'].'/images/'.$type.'/placeholder300x300.jpg';
+            return [
+                'message' => 'Imagem invalida!',
+                'errors' => true
+                ];
         }
     }
 }

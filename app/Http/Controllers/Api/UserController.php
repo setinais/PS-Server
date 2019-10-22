@@ -113,10 +113,10 @@ class UserController extends Controller
                 $user->password = Hash::make($request['password']);
             if(isset($request['name']))
                 $user->name = $request['name'];
-//            if(isset($request['data_nascimento']))
-//                $user->data_nascimento = $request['data_nascimento'];
-//            if(isset($request['sexo']))
-//                $user->sexo = $request['sexo'];
+            if(isset($request['data_nascimento']))
+                $user->data_nascimento = $request['data_nascimento'];
+            if(isset($request['sexo']))
+                $user->sexo = $request['sexo'];
             if(isset($request['cpf']))
                 $user->cpf = $request['cpf'];
             if(isset($request['cartao_sus']))

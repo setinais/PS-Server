@@ -139,7 +139,7 @@ class BannerAppController extends VoyagerMediaController
             $storage = Storage::disk($this->filesystem)->addPlugin(new ListWith());
             $storageItems = $storage->listWith(['mimetype'], $dir);
 //            return response()->json([$storageItems]);
-            if(count($storageItems) >= 4){
+            if(count($storageItems) >= 3){
                 throw new Exception(__('Numero maximo de banners!'));
             }
             $realPath = Storage::disk($this->filesystem)->getDriver()->getAdapter()->getPathPrefix();
