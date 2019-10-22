@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d844e060-a9c3-4700-a566-8284d4bca747" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/LocalRiscoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/LocalRiscoController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/User/BannerAppController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/User/BannerAppController.php" afterDir="false" />
-    </list>
+    <list default="true" id="d844e060-a9c3-4700-a566-8284d4bca747" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -262,7 +257,7 @@
       <workItem from="1571192955368" duration="27246000" />
       <workItem from="1571628360804" duration="20993000" />
       <workItem from="1571752885391" duration="1312000" />
-      <workItem from="1571755619052" duration="1402000" />
+      <workItem from="1571755619052" duration="1434000" />
     </task>
     <servers />
   </component>
