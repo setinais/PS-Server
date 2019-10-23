@@ -22,6 +22,9 @@ Route::namespace('Api')->group(function () {
     Route::name('api.')->group(function (){
         Route::get('/banners', 'BannerApiController@banners')->name('banners');
         Route::get('/checkupdate', 'BannerApiController@checkUpdate')->name('banners.update');
+        Route::get('/hospitais', 'BannerApiController@hospitais')->name('hospitais.get');
+        Route::get('/ubs', 'BannerApiController@ubs')->name('ubs.get');
+        Route::get('/ubsh/{id}', 'BannerApiController@ubsh')->name('ubsh.get');
 
         //Local de Risco
             Route::get('/local-risco/index', 'LocalRiscoController@index')->name('localrisco.index');
