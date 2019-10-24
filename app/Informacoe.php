@@ -6,12 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use TCG\Voyager\Traits\Spatial;
 
-class LocalRisco extends Model
+class Informacoe extends Model
 {
-    use SoftDeletes, Spatial;
+    use SoftDeletes;
 
-    protected $spatial = ['localizacao'];
     protected $dates = ['deleted_at'];
-
-
 }
