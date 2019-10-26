@@ -11,6 +11,8 @@
 |
 */
 
+use Illuminate\Support\Facades\Route;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -51,6 +53,9 @@ Route::group(['prefix' => 'ps-admin'], function () {
     Route::post('/media-user/delete', 'User\BannerAppController@delete')->name('media.user.delete');
     Route::post('/media-user/crop', 'User\BannerAppController@crop')->name('media.user.crop');
     Route::post('/media-user/upload', 'User\BannerAppController@upload')->name('media.user.upload');
+
+
+    Route::get('/avaliacaos/estatistica', 'User\AvaliacaoController@estatisticas')->name('voyager.avaliacaos.estatisticas');
 
 
     Voyager::routes();

@@ -15,6 +15,8 @@ class CreateAvaliacaosTable extends Migration
     {
         Schema::create('avaliacaos', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('informacoe_id');
+            $table->integer('user_id');
             $table->smallInteger('tempo_de_espera');
             $table->smallInteger('estrutura');
             $table->smallInteger('servidor_publico');

@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Api;
 
 use App\Banner;
+use App\Informacoe;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use League\Flysystem\Plugin\ListWith;
 use stdClass;
+use Exception;
 
 class BannerApiController extends Controller
 {
@@ -70,6 +72,7 @@ class BannerApiController extends Controller
     }
 
     public function hospitais(){
+
         $h = new StdClass;
         $lalo = new StdClass;
         $lalo->latitude = -10.1808948;
@@ -121,13 +124,20 @@ class BannerApiController extends Controller
         $h2->servicos = [];
         $h2->created_at = 'string';
 
+//        $hs = Informacoe::where('type', 'HPT')->get();
+//        foreach ($hs as $key => $h) {
+//            $hs[$key]->localizacao = json_decode($h->localizacao);
+//        }
         return response()->json([
             'message' => 'Hospitais buscados!',
             'errors' => false,
+//            'data' => $hs,
             'data' => [$h, $h1, $h2],
 
         ]);
+
     }
+
     public function ubs(){
         $u = new StdClass;
         $s = new StdClass;
@@ -269,6 +279,7 @@ class BannerApiController extends Controller
 
         ]);
     }
+
     public function ubsh($id){
 
         $h = new StdClass;

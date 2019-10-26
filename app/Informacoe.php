@@ -11,4 +11,8 @@ class Informacoe extends Model
     use SoftDeletes;
 
     protected $dates = ['deleted_at'];
+
+    public function avaliacaos(){
+        return $this->hasMany('App\Avaliacao');
+    }
 }
