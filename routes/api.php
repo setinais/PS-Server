@@ -30,6 +30,9 @@ Route::namespace('Api')->group(function () {
             Route::get('/local-risco/index', 'LocalRiscoController@index')->name('localrisco.index');
             Route::post('/local-risco/store', 'LocalRiscoController@store')->name('localrisco.store');
 
+        // Avaliacoes
+            Route::post('/avaliacaos/storeapi', 'AvaliacaoController@store')->name('avaliacaos.storeapi');
+
 
         Route::apiResources([
             'user' => 'UserController',
