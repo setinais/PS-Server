@@ -36,12 +36,15 @@ class LocalRiscoController extends Controller
      */
     public function store(Request $request)
     {
-        try{
-            $imagem = $this->uploadImage($request->primaryImage);
-            if($imagem['errors'])
+//        try{
+
+//            $imagem = $this->uploadImage($request['imagens']);
+
+//            if($imagem['errors'])
                 return response()->json([
                     'message' => 'Falha no envio da imagem!',
                     'errors' => false,
+                    'data' => $imagem
                 ]);
 
             $lr = new LocalRisco();
@@ -50,22 +53,23 @@ class LocalRiscoController extends Controller
             $lr->bairro = $request['bairro'];
             $lr->imagem = $imagem['data'];
             $lr->location_id = $lr->location()->create($request['location'])->id;
-            $lr->save();
+//            $lr->save();
 
             return response()->json(
                 [
                     'message' => 'Cadastro realizado com sucesso!',
-                    'errors' => false
+                    'errors' => false,
+                    'data' => $lr
                 ]
             );
-        } catch (\Exception $e){
-            return response()->json(
-                [
-                    'message' => 'Erro (LR1) Interno servidor, Contate um Administrador do Sistema!',
-                    'errors' => false,
-                ], 500
-            );
-        }
+//        } catch (\Exception $e){
+//            return response()->json(
+//                [
+//                    'message' => 'Erro (LR1) Interno servidor, Contate um Administrador do Sistema!',
+//                    'errors' => false,
+//                ], 500
+//            );
+//        }
     }
 
     /**
@@ -102,16 +106,15 @@ class LocalRiscoController extends Controller
         //
     }
 
-    public function uploadImage($image)
+    public function uploadImage(Request $request)
     {
-        if (!is_null($image))
-        {
+        $imagem = $request->hasFile('imagens');
             $file = $image;
 
             $extension = $image->getClientOriginalExtension();
             $fileName = time() . random_int(100, 999) .'.' . $extension;
             $destinationPath = Storage::disk($this->filesystem)->path('local-risco');
-            $url = 'http://'.$_SERVER['HTTP_HOST'].'/images/'.$fileName;
+            $url = 'http://'.$_SERVER['HTTP_HOST'].'/imagens/'.$fileName;
             $fullPath = $destinationPath.$fileName;
             if (!file_exists($destinationPath)) {
                 File::makeDirectory($destinationPath, 0775);
@@ -127,11 +130,7 @@ class LocalRiscoController extends Controller
                 'errors' => false,
                 'data' => $fileName
             ];
-        } else {
-            return [
-                'message' => 'Imagem invalida!',
-                'errors' => true
-                ];
-        }
+
+
     }
 }

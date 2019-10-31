@@ -145,7 +145,8 @@ if (\Illuminate\Support\Str::startsWith(Auth::user()->avatar, 'http://') || \Ill
 @stack('javascript')
 @if(!empty(config('voyager.additional_js')))<!-- Additional Javascript -->
 @foreach(config('voyager.additional_js') as $js)<script type="text/javascript" src="{{ asset($js) }}"></script>@endforeach
-@endif
 
+@endif
+<script type="text/javascript" src="{{ asset('js/jquery.mask.js') }}"></script>
 </body>
 </html>

@@ -30,8 +30,23 @@ class AvaliacaoController extends VoyagerBaseController
         $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
         $this->authorize('browse', app($dataType->model_name));
 
-        $informacoes = Informacoe::orderBy('type')->get();
+        $informacoes_ubs = Informacoe::where('type', 'UBS')->orderBy('nome')->get();
+        $informacoes_hpt = Informacoe::where('type', 'HPT')->orderBy('nome')->get();
 
+        $chart_hpt = $this->chart($informacoes_hpt);
+        $chart_ubs = $this->chart($informacoes_ubs);
+
+//        $user = Avaliacao::group
+
+        $view = 'voyager::'.$slug.'.estatistica';
+        return Voyager::view($view, compact(
+            'dataType',
+            'chart_hpt',
+            'chart_ubs'
+        ));
+    }
+
+    private function chart($informacoes){
         $labels = [];
         $atendimento = [];
         $servico = [];
@@ -51,10 +66,15 @@ class AvaliacaoController extends VoyagerBaseController
                 $soma_servico += $avaliacao->servidor_publico;
                 $soma_estrutura += $avaliacao->estrutura;
             }
-
-            $atendimento[] = $soma_atendimento/$qntd;
-            $servico[] = $soma_servico/$qntd;
-            $estrutura[] = $soma_estrutura/$qntd;
+            if($qntd > 0){
+                $atendimento[] = $soma_atendimento/$qntd;
+                $servico[] = $soma_servico/$qntd;
+                $estrutura[] = $soma_estrutura/$qntd;
+            }else{
+                $atendimento[] = 0;
+                $servico[] = 0;
+                $estrutura[] = 0;
+            }
         }
 
         $chart = new AvaliacoesEstatistica;
@@ -76,13 +96,7 @@ class AvaliacaoController extends VoyagerBaseController
             ],
         ]);
 
-//        $user = Avaliacao::group
-
-        $view = 'voyager::'.$slug.'.estatistica';
-        return Voyager::view($view, compact(
-            'dataType',
-            'chart'
-        ));
+        return $chart;
     }
     //***************************************
     //               ____

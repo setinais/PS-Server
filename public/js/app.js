@@ -52371,8 +52371,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Vinnicyus\PhpstormProjects\ps-server\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Vinnicyus\PhpstormProjects\ps-server\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! E:\wamp\www\ps-server\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! E:\wamp\www\ps-server\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

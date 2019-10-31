@@ -297,7 +297,7 @@ class InformacoeController extends VoyagerBaseController
         if (view()->exists("voyager::$slug.edit-add")) {
             $view = "voyager::$slug.edit-add";
         }
-
+        $dataTypeContent->localizacao = json_decode($dataTypeContent->localizacao);
         return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable'));
     }
 
@@ -310,7 +310,10 @@ class InformacoeController extends VoyagerBaseController
 
         // Compatibility with Model binding.
         $id = $id instanceof \Illuminate\Database\Eloquent\Model ? $id->{$id->getKeyName()} : $id;
-
+        $ll = new StdClass;
+        $ll->latitude = $request['latitude'];
+        $ll->longitude = $request['longitude'];
+        $request['localizacao'] = json_encode($ll);
         $model = app($dataType->model_name);
         if ($dataType->scope && $dataType->scope != '' && method_exists($model, 'scope'.ucfirst($dataType->scope))) {
             $model = $model->{$dataType->scope}();

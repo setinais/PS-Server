@@ -76,10 +76,10 @@
                                         <div class="form-group"><!---->
                                             <div class="col-md-2">
                                                 <label class="control-label">Latitude</label>
-                                                <input type="number" step="any" name="latitude" placeholder="19.6400" class="form-control">
+                                                <input type="number" step="any" name="latitude" placeholder="-10.12354654" class="form-control" value="{{ $dataTypeContent->localizacao->latitude }}">
                                             </div> <div class="col-md-2">
                                                 <label class="control-label">Longitude</label>
-                                                <input type="number" step="any" name="longitude" placeholder="-155.9969" class="form-control">
+                                                <input type="number" step="any" name="longitude" placeholder="-48.9969545" class="form-control" value="{{ $dataTypeContent->localizacao->longitude }}">
                                             </div>
                                         </div>
                                     @else
@@ -148,10 +148,13 @@
             </div>
         </div>
     </div>
+
+
     <!-- End Delete File Modal -->
 @stop
 
 @section('javascript')
+
     <script>
         var params = {};
         var $file;
@@ -173,10 +176,23 @@
                 $('#confirm_delete_modal').modal('show');
             };
         }
-
+        var options = {
+            onKeyPress: function (telefone, e, field, options) {
+                var masks = ['(00) 0 0000-0000','(00) 0000-0000'];
+                var mask = (telefone.length >= 12) ? masks[0] : masks[1];
+                $('[name=telefone]').mask(mask, options);
+            }
+        };
+        $('[name=telefone]').blur(function () {
+            if($(this).val().length == 15){
+                $(this).mask('(00) 0000-0000')
+            }
+        });
+        $('[name=telefone]').click(function () {
+            $(this).mask('(00) 0 0000-0000')
+        });
         $('document').ready(function () {
             $('.toggleswitch').bootstrapToggle();
-
             //Init datepicker for date fields if data-datepicker attribute defined
             //or if browser does not handle date inputs
             $('.form-group input[type=date]').each(function (idx, elt) {
