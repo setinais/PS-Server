@@ -14,4 +14,7 @@ class LocalRisco extends Model
     protected $dates = ['deleted_at'];
 
 
+    public function location(){
+        return $this->belongsTo('App\Location');
+    }
 }

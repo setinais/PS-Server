@@ -513,21 +513,21 @@ class BannerApiController extends Controller
 //                $ret = $h2;
 //        }
         try{
-        $ret = Informacoe::find($id);
-        if(!is_null($ret)) {
-            $ret->localizacao = json_decode($ret->localizacao);
-            $ret->imagem = str_replace('\\', '/', Storage::disk($this->filesystem)->url($ret->imagem));
-        }
-        return response()->json([
-            'message' => 'Busco ok',
-            'errors' => false,
-            'data' => $ret
-        ]);
+            $ret = Informacoe::find($id);
+            if(!is_null($ret)) {
+                $ret->localizacao = json_decode($ret->localizacao);
+                $ret->imagem = str_replace('\\', '/', Storage::disk($this->filesystem)->url($ret->imagem));
+            }
+            return response()->json([
+                'message' => 'Busco ok',
+                'errors' => false,
+                'data' => $ret
+            ]);
         }catch (Exception $e){
             return response()->json([
-            'message' => 'Erro interno, contate administrador do sistema!',
-            'errors' => true,
-        ]);
-}
+                'message' => 'Erro interno, contate administrador do sistema!',
+                'errors' => true,
+            ]);
+        }
     }
 }

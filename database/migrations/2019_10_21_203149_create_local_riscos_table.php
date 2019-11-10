@@ -18,7 +18,7 @@ class CreateLocalRiscosTable extends Migration
             $table->string('localizacao');
             $table->string('descricao');
             $table->string('endereco')->nullable();
-            $table->string('imagem');
+            $table->string('imagem')->nullable();
             $table->string('bairro')->nullable();
             $table->enum('status', ['A', 'R', 'T', 'B'])->default('T'); //A - Aprovado, R - Reprovado, T - EM teste, B - Resolvido dado baixa
             $table->timestamps();
