@@ -76,10 +76,10 @@
                                         <div class="form-group"><!---->
                                             <div class="col-md-2">
                                                 <label class="control-label">Latitude</label>
-                                                <input type="number" step="any" name="latitude" placeholder="-10.12354654" class="form-control" value="{{ $dataTypeContent->localizacao->latitude }}">
+                                                <input type="number" step="any" name="latitude" placeholder="-10.12354654" class="form-control" value="{{ is_null($dataTypeContent->localizacao) ? '' : $dataTypeContent->localizacao->latitude }}">
                                             </div> <div class="col-md-2">
                                                 <label class="control-label">Longitude</label>
-                                                <input type="number" step="any" name="longitude" placeholder="-48.9969545" class="form-control" value="{{ $dataTypeContent->localizacao->longitude }}">
+                                                <input type="number" step="any" name="longitude" placeholder="-48.9969545" class="form-control" value="{{ is_null($dataTypeContent->localizacao) ? '' : $dataTypeContent->localizacao->longitude }}">
                                             </div>
                                         </div>
                                     @else
